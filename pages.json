@@ -39,7 +39,7 @@
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
-		"navigationBarTitleText": "优购商城",
+		"navigationBarTitleText": "游购",
 		"navigationBarBackgroundColor": "#c00000",
 		"backgroundColor": "#F8F8F8",
 		"app-plus": {
@@ -74,5 +74,31 @@
 				"selectedIconPath":"./static/tab_icons/my-active.png"
 			}
 		]
-	}
+	},
+	// 分包配置
+	"subPackages":[
+		{
+			"root":"subpkg",
+			//分包文件
+			"pages":[{
+                    "path" : "goods_detail/goods_detail",
+                    "style" :                                                                                    
+                {
+                    // "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+                ,{
+                    "path" : "goods_list/goods_list",
+                    "style" :                                                                                    
+                {
+                    // "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
+            ]
+		}
+	]
 }
