@@ -1,5 +1,7 @@
 <template>
 	<view>
+		<!-- 搜索框组件 -->
+		<my-search @click='gosearch'></my-search>
 		<view style="display: flex;">
 			<!-- 左侧滑动区域 -->
 			<scroll-view  class="scroll-l" scroll-y :style="{height:wh+'px'}">
@@ -46,7 +48,7 @@
 		onLoad(){
 			// uni.getSystemInfoSync()获取屏幕的可使用宽度
 			const info=uni.getSystemInfoSync()
-			this.wh=info.windowHeight
+			this.wh=info.windowHeight-50
 			// console.log(this.wh)
 			this.getcateList()
 		},
@@ -69,6 +71,11 @@
 			to(id){
 				uni.navigateTo({
 					url:'/subpkg/goods_list/goods_list?cid='+id,
+				})
+			},
+			gosearch(){
+				uni.navigateTo({
+					url:'/subpkg/search/search'
 				})
 			}
 		}

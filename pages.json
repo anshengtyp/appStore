@@ -98,6 +98,15 @@
                 }
                 
                 }
+                ,{
+                    "path" : "search/search",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }
+                
+                }
             ]
 		}
 	]

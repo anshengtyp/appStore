@@ -1,7 +1,7 @@
 <!-- 商品详情页 -->
 <template>
 	<view>
-		
+		商品详情页
 	</view>
 </template>
 

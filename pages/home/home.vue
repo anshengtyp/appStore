@@ -1,5 +1,10 @@
 <template>
 	<view>
+		<!-- 固定定位 -->
+		<view style="position: sticky;top: 0px;z-index: 99;">
+			<!-- 搜索框组件 -->
+			<my-search @click='gosearch'></my-search>
+		</view>
 		<!-- 轮播图区域 -->
 		<swiper indicator-dots autoplay :interval="3000" :duration='1000' circular>
 			<swiper-item v-for="(item,index) in swiperList" :key="index">
@@ -92,6 +97,11 @@
 					})
 				})
 				this.floorList=res.message
+			},
+			gosearch(){
+				uni.navigateTo({
+					url:'/subpkg/search/search'
+				})
 			}
 		}
 	}
