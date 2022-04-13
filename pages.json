@@ -82,11 +82,7 @@
 			//分包文件
 			"pages":[{
                     "path" : "goods_detail/goods_detail",
-                    "style" :                                                                                    
-                {
-                    // "navigationBarTitleText": "",
-                    "enablePullDownRefresh": false
-                }
+                    "style" :{}
                 
                 }
                 ,{
@@ -94,17 +90,15 @@
                     "style" :                                                                                    
                 {
                     // "navigationBarTitleText": "",
-                    "enablePullDownRefresh": false
+                    "enablePullDownRefresh": true,
+					"backgroundColor":"#F8F8F8",
+					"onReachBottomDistance":50
                 }
                 
                 }
                 ,{
                     "path" : "search/search",
-                    "style" :                                                                                    
-                {
-                    "navigationBarTitleText": "",
-                    "enablePullDownRefresh": false
-                }
+                    "style" :{}
                 
                 }
             ]
