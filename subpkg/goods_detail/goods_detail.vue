@@ -38,7 +38,31 @@
 </template>
 
 <script>
+	import {mapState,mapMutations,mapGetters} from 'vuex'
 	export default {
+		computed:{
+			// 调用 mapState 方法，把 my_cart 模块中的 cart 数组映射到当前页面中，作为计算属性来使用
+			// ...mapState('模块的名称', ['要映射的数据名称1', '要映射的数据名称2'])
+			...mapState('my_Cart',[]),
+			// 动态实现购物车角标
+			...mapGetters('my_Cart',['total'])
+		},
+		// 侦听器，监听total属性的变化，对info赋值
+		watch:{
+			// newval为新值
+			// total不能为函数，是因为侦听器函数在页面初次加载的时候不会执行
+			total:{
+				 handler(newval){
+					// find返回true的配置对象，也就是购物车对象
+					const result = this.options.find(x => x.text === '购物车')
+					if(result){
+						result.info=newval
+					}
+				},
+				// 是否在页面初次加载完毕的时候立即调用
+				immediate:true
+			}
+		},
 		data() {
 			return {
 				goodsinfo: {},
@@ -53,7 +77,7 @@
 				}, {
 					icon: 'cart',
 					text: '购物车',
-					info: 2
+					info: 0
 				}],
 				buttonGroup: [{
 						text: '加入购物车',
@@ -73,6 +97,8 @@
 			this.getgoodsinfo(data.goods_id)
 		},
 		methods: {
+			// addToCart为添加购物车的方法
+			...mapMutations('my_Cart',['addToCart']),
 			async getgoodsinfo(goods_id) {
 				const {
 					data: res
@@ -98,15 +124,28 @@
 				})
 			},
 			onClick(e){
-				if(e.content.text == '购物车'){
+				if(e.content.text === '购物车'){
 					// 跳转到购物车页面
 					uni.switchTab({
 						url:'/pages/cart/cart'
 					})
 				}
 			},
-			buttonClick(){
-				
+			buttonClick(e){
+				if(e.content.text === '加入购物车'){
+					// 商品信息对象
+					const goods={
+						goods_id:this.goodsinfo.goods_id,
+						goods_name:this.goodsinfo.goods_name,
+						goods_count:1,
+						// 勾选状态
+						goods_state:true,
+						goods_price:this.goodsinfo.goods_price,
+						goods_small_logo:this.goodsinfo.goods_small_logo,
+					}
+					// 调用映射过来的方法
+					this.addToCart(goods)
+				}
 			}
 			
 		}

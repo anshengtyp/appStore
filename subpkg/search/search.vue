@@ -45,7 +45,7 @@
 		methods:{
 			gotodetail2(item){
 				uni.navigateTo({
-					url:'/subpkg/goods_detail/goods_detail?query='+item
+					url:'/subpkg/goods_list/goods_list?query='+item
 				})
 			},
 			// 输入框的输入事件,e为用户输入的内容

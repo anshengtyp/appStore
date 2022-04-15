@@ -1,6 +1,8 @@
 // #ifndef VUE3
 import Vue from 'vue'
 import App from './App'
+import store from '@/store/store.js'
+
 // 导入发送请求的包
 import {
 	$http
@@ -38,7 +40,9 @@ Vue.config.productionTip = false
 App.mpType = 'app'
 
 const app = new Vue({
-	...App
+	...App,
+	// 将store挂载为vue的实例对象
+	store
 })
 app.$mount()
 // #endif

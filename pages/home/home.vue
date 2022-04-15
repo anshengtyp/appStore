@@ -46,7 +46,9 @@
 </template>
 
 <script>
+	import bageMix from '@/mixins/tabar-badge.js'
 	export default {
+		mixins:[bageMix],
 		data() {
 			return {
 				// 轮播图数组
