@@ -9,28 +9,36 @@ import {
 } from '@escook/request-miniprogram'
 
 // 配置请求的根路径
-$http.baseUrl='http://api-ugo-web.itheima.net'
+$http.baseUrl = 'https://api-hmugo-web.itheima.net'
 
 // 挂载到uni对象上
 uni.$http = $http
 
 // 数据加载失败的提示，将其挂载在uni上
-uni.$showMsg=function(title='数据加载失败'){
+uni.$showMsg = function(title = '数据加载失败') {
 	uni.showToast({
-		title:title,
-		icon:'none'
+		title: title,
+		icon: 'none'
 	})
 }
 
 // 请求拦截器
-$http.beforeRequest=function(options){
+$http.beforeRequest = function(options) {
 	uni.showLoading({
-		title:"加载中..."
+		title: "加载中..."
 	})
+	// console.log(options)
+	// 判断请求的地址是否为有权限的地址
+	if (options.url.indexOf('/my/') !== -1) {
+		// 为请求头添加认证字段
+		options.header = {
+			Authorization: store.state.my_User.token
+		}
+	}
 }
 
 // 响应拦截器
-$http.afterRequest=function(){
+$http.afterRequest = function() {
 	uni.hideLoading()
 }
 
